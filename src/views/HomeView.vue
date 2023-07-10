@@ -229,7 +229,7 @@ import { Song } from '@/models/Song';
       this.getRandomTracks();
     },
     getRandomTracks() {
-      axios.get('http://127.0.0.1:8001/library')
+      axios.get('https://api.emovec.ru/library')
         .then((response) => {
           this.allSongs = response.data;
         });
