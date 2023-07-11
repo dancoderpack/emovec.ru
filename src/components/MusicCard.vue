@@ -3,7 +3,7 @@
     <div class="music-card__overlay"></div>
     <div class="music-card__content">
       <div class="music-card__text-content">
-        <div class="music-card__explore-btn">
+        <div class="music-card__explore-btn" @click="this.onClickExplore">
           <img class="music-card__circle" src="@/assets/icons/circle.svg" alt="circle">
           explore
           <img class="music-card__arrow" src="@/assets/icons/arrow.svg" alt="arrow">
@@ -13,7 +13,10 @@
           <p class="music-card__artist">{{ song.artist }}</p>
         </div>
       </div>
-      <img class="music-card__play-btn" src="@/assets/icons/play.svg" alt="butn">
+      <img class="music-card__play-btn"
+           :src="require('@/assets/icons/' + (this.isPlaying ? 'pause' : 'play') + '.svg')"
+           alt="Play/pause"
+           @click="this.onClickPlayButton">
     </div>
   </div>
 </template>
@@ -28,6 +31,7 @@
   background-size: cover;
   background-position: center;
   border-radius: 32px;
+
   &__overlay {
     width: 100%;
     height: 100%;
@@ -40,6 +44,7 @@
         transparent 0%, rgba(16, 5, 27, 0.22) 10%, rgba(21, 5, 37, 0.9) 100%
     );
   }
+
   &__content {
     display: flex;
     width: 100%;
@@ -49,21 +54,25 @@
     top: 0;
     left: 0;
   }
+
   &__meta {
     display: flex;
     flex-direction: column;
     row-gap: 4px;
     margin: 24px;
   }
+
   &__title {
     font-size: 16px;
     text-align: left;
     font-weight: 700;
   }
+
   &__artist {
     text-align: left;
     font-size: 12px;
   }
+
   &__explore-btn {
     display: flex;
     align-items: center;
@@ -72,7 +81,13 @@
     text-align: left;
     margin: 24px;
     font-size: 12px;
+
+    &:hover {
+      opacity: 80%;
+      cursor: pointer;
+    }
   }
+
   &__text-content {
     display: flex;
     width: 100%;
@@ -81,19 +96,27 @@
     justify-content: space-between;
     //background-color: #300B56;
   }
+
   &__circle {
     width: 16px;
     height: 16px;
   }
+
   &__arrow {
     width: 8px;
     height: 8px;
   }
+
   &__play-btn {
     width: 44px;
     position: absolute;
     bottom: -20px;
     right: 20px;
+
+    &:hover {
+      opacity: 80%;
+      cursor: pointer;
+    }
   }
 }
 </style>
@@ -102,14 +125,29 @@ import { Options, Vue } from 'vue-class-component';
 import { Song } from '@/models/Song';
 
 @Options({
-  components: {
-  },
+  components: {},
   props: {
     song: {
       type: Object as () => Song,
       required: true,
     },
+    isPlaying: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    onClickPlayButton() {
+      this.$emit('on-click-play-btn', this.song);
+    },
+    onClickExplore() {
+      this.$router.push({
+        name: 'music',
+        params: { id: this.song.id },
+      });
+    },
   },
 })
-export default class MusicCard extends Vue {}
+export default class MusicCard extends Vue {
+}
 </script>

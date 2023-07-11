@@ -70,6 +70,19 @@
   }
 }
 </style>
-<script setup lang="ts">
 
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+
+@Options({
+  props: {
+    song: {
+      type: Object as () => Song,
+      required: true,
+    },
+  },
+})
+export default class CoordinatesSystem extends Vue {
+}
 </script>
+
