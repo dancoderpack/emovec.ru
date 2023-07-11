@@ -8,19 +8,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: '/info',
-    name: 'info',
-    component: () => import('../views/MusicView.vue'),
-  },
-  {
     path: '/music/:id',
     name: 'music',
     component: () => import('../views/MusicInfoView.vue'),
-  },
-  {
-    path: '/musicinfo',
-    name: 'musicinfo',
-    component: () => import('../views/MusicInfoViewMobileView.vue'),
   },
 ];
 
