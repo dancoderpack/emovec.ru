@@ -18,11 +18,12 @@
   height: 100%;
   border-radius: 24px;
   background-image: linear-gradient(
-    to bottom,
-    rgba(207, 163, 255, 0.2) 10%, rgba(21, 5, 37, 0.9) 100%
+      to bottom,
+      rgba(207, 163, 255, 0.2) 10%, rgba(21, 5, 37, 0.9) 100%
   );
   justify-items: center;
 }
+
 .graph {
   display: flex;
   width: 100%;
@@ -35,6 +36,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .value-point {
   display: flex;
   flex-direction: column;
@@ -42,12 +44,14 @@
   position: relative;
   left: calc(100% - 10px);
   top: calc(100% - 100% - 65px);
+
   &__circle {
     width: 16px;
     height: 16px;
     border: 2px solid white;
     border-radius: 50%;
   }
+
   &__text {
     display: flex;
     width: auto;
@@ -59,10 +63,11 @@
     padding: 0 32px;
     margin-left: 16px;
     background-image: linear-gradient(
-      to bottom,
-      rgba(207, 163, 255, 0.2) 10%, rgba(21, 5, 37, 0.9) 100%
+        to bottom,
+        rgba(207, 163, 255, 0.2) 10%, rgba(21, 5, 37, 0.9) 100%
     );
   }
+
   &-container {
     display: flex;
     width: 60%;
@@ -74,15 +79,14 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 
-@Options({
-  props: {
-    song: {
-      type: Object as () => Song,
-      required: true,
-    },
-  },
-})
-export default class CoordinatesSystem extends Vue {
-}
+// @Options({
+//   props: {
+//     song: {
+//       type: Object as () => Song,
+//       required: true,
+//     },
+//   },
+// })
+// export default class CoordinatesSystem extends Vue {
+// }
 </script>
-
